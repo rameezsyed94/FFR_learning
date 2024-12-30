@@ -1,0 +1,48 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: zia2
+
+---
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: l2
+  namespace: zia2
+spec:
+  limits:
+     - default:
+         cpu: 50m
+         memory: 70Mi
+       defaultRequest:
+         cpu: 20m
+         memory: 50Mi
+       min:
+         cpu: 10m
+         memory: 20Mi
+       max:
+         cpu: 50m
+         memory: 100Mi
+       maxLimitRequestRatio:
+         memory: 2
+         cpu: 2
+       type: Container
+---
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: m1
+  namespace: zia2
+spec:
+  containers:
+    - name: m1
+      image: nginx
+      resources:
+        requests:
+          cpu: 210m
+          memory: 150Mi
+        limits:
+          cpu: 400m 
+          memory: 280Mi
+

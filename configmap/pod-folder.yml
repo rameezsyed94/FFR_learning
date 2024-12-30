@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod50-cm4-folder
+  labels:
+    course: devops
+spec:
+  containers:
+    - name: c50-fromfolder
+      image: nginx
+      env:
+        - name: var50 #inside container env variable search
+          valueFrom:
+             configMapKeyRef:
+               name: cm50   # cm name
+               key: application.user , application.db # key we got from describing cm where we see data option below that we get this 

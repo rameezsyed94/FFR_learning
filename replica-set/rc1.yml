@@ -1,0 +1,20 @@
+apiVersion: v1
+
+kind: ReplicationController
+
+metadata:
+  name: rc-1-syed
+  labels:
+    syed: minikubepractice
+
+spec:
+  replicas: 3
+  template:
+    metadata:
+      name: syed-rc-pod
+      labels:
+        name: devops
+    spec:
+      containers:
+        - name: syedc1
+          image: nginx

@@ -1,0 +1,144 @@
+
+apiVersion: apps/v1
+
+kind: Deployment
+
+metadata:
+  name: syeddeployment
+  labels:
+     type: syedlabel
+spec:
+  replicas: 15
+  selector:
+    matchLabels:
+      name: devops
+
+  template:
+    metadata:
+       name: syedpracticepod
+       labels:
+          name: devops
+    spec:
+      containers:
+        - name: syedc1
+          image: nginx
+---------------------------------------------------------
+
+apiVersion: apps/v1
+
+
+kind: Deployment
+
+metadata:
+  name: syeddeployment
+  labels:
+     type: syedlabel
+
+spec:
+  replicas: 5
+  minReadySeconds: 10
+  strategy:
+    rollingUpdate:
+      maxSurge: 2
+      maxUnavailable: 0
+    type: RollingUpdate
+
+  selector:
+    matchLabels:
+      name: devops
+
+  template:
+    metadata:
+       name: syedpracticepod
+       labels:
+          name: devops
+    spec:
+      containers:
+        - name: syed
+          image: nginx/nginx-prometheus-exporter
+
+----------------------------------------------------------
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: syeddeployment
+spec:
+  replicas: 20
+  minReadySeconds: 60
+  strategy:
+    rollingUpdate:
+      maxSurge: 2
+      maxUnavailable: 0
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      name: deployment
+  template:
+    metadata:
+      name: testpod
+      labels:
+        name: deployment
+    spec:
+      containers:
+        - name: syed
+          image: centos
+          command: ["/bin/bash", "-c", "while true; do echo centos 2-2  revision 4; sleep 5; done"]
+
+
+--------------------------------------------------------------
+
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: syeddeployment
+spec:
+  replicas: 05
+  minReadySeconds: 02
+  strategy:
+    rollingUpdate:
+      maxSurge: 2
+      maxUnavailable: 0
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      name: deployment
+  template:
+    metadata:
+      name: testpod
+      labels:
+        name: deployment
+    spec:
+      containers:
+        - name: syed
+          image: centos
+          command: ["/bin/bash", "-c", "while true; do echo centos 2-2  revision 4; sleep 5; done"]
+          resources:
+              requests:
+               memory: 100Mi
+               cpu: 100m
+              limits:
+               memory: 200Mi
+               cpu: 200m
+------------------------------------------------------------------------------------------
+
+
+kind: Pod
+apiVersion: v1
+metadata:
+  name: spod
+spec:
+  containers:
+    - name: c00
+      image: ubuntu
+      command: ["/bin/bash", "-c", "while true; do echo Technical Guftgu; sleep 5 ; done"]
+      resources:
+        requests:
+          memory: 64Mi
+          cpu: 100m
+        limits:
+          memory: 128Mi
+          cpu: 200m
+

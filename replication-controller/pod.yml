@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: syedpod
+  labels:
+    name: syed
+spec:
+  containers:
+    - name: syedc1
+      image: ubuntu
+      command: ["/bin/bash", "-c", "while true; do echo Hello syeda bushra; sleep 5; done"]

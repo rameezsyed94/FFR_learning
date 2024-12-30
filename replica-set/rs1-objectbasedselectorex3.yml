@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+
+kind: ReplicaSet
+
+metadata:
+  name: rs-1-syed
+  labels:
+    syed: minikubepractice
+
+spec:
+  replicas: 8
+  selector:
+    matchExpressions:
+    - key: name
+      operator: In
+      values:
+        - au
+        - mrhfl
+
+
+    - key: type
+      operator: NotIn
+      values:
+        - frontend      
+        
+
+  template:
+    metadata:
+      name: syed-rc-pod
+      labels:
+         name: au
+         type: forgroound  
+    spec:
+      containers:
+        - name: syedc1
+          image: nginx

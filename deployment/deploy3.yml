@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: syeddeployment
+  labels:
+    class: devops
+  annotations:
+     kubernetes.io/change-cause: centos1
+spec:
+   replicas: 10
+   selector:
+     matchLabels:
+       name: deployment
+   minReadySeconds: 5
+   strategy:
+      type: Recreate   # This specifies the Recreate strategy
+   template:
+      metadata:
+       name: centospod
+       labels:
+         name: deployment
+      spec:
+       containers:
+        - name: centos
+          image: centos
+          command: ["/bin/bash", "-c", "while true; do echo centoss1 - for practice; sleep 5; done"]

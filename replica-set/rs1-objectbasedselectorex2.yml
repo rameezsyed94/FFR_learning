@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+
+kind: ReplicaSet
+
+metadata:
+  name: rs-1-syed
+  labels:
+    syed: minikubepractice
+
+spec:
+  replicas: 5
+  selector:
+    matchExpressions:
+    - key: name
+      operator: NotIn
+      values:
+        - syed-atef
+        - syed-zafar
+        
+
+  template:
+    metadata:
+      name: syed-rc-pod
+      labels:
+         name: syed-rameez
+    spec:
+      containers:
+        - name: syedc1
+          image: nginx

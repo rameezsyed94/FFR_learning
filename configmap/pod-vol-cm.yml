@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod25
+  labels:
+    course: devops
+spec:
+  containers:
+    - name: c15v
+      image: nginx
+      volumeMounts:
+        - name: test
+          mountPath: "/config"
+          readOnly: true
+    
+# for getting the configmap into container as files then volumen and mounts need to be used
+
+  volumes:
+    - name: test
+      configMap:
+        name: cm50

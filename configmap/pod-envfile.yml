@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod2-cm2-file
+  labels:
+    course: devops
+spec:
+  containers:
+    - name: c3l
+      image: nginx
+      env:
+        - name: var2 #inside container env variable search
+          valueFrom:
+             configMapKeyRef:
+               name: cm3   # cm name
+               key: Firewall # key

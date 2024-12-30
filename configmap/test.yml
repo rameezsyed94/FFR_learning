@@ -1,0 +1,30 @@
+apiVersion: v1
+data:
+  application.db: |
+    #DB Detais
+
+    Database_IP="172.168.0.10"
+    Databasepassword="franke$123"
+    Databasname="lmsuser"
+
+
+
+    MS-SQL="web edition"
+    Client="AU-Prod"
+    serverDB="azure"
+  application.security: |+
+    #securitydetails
+    #
+    #
+    #
+    #
+    #
+    WAF="cloudflare"
+    DDOS="cloudflare"
+    Firewall="Fortinet"
+
+  course: devops
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: cm100

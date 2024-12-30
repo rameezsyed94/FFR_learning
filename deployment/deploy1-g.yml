@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: syed-prac-1-deployment
+  labels:
+    class: devops
+spec:
+   replicas: 5
+   selector:     
+    matchLabels:
+     name: deployment
+   template:
+     metadata:
+       name: centospod
+       labels:
+         name: deployment
+     spec:
+      containers:
+        - name: centos2
+          image: centos
+          command: ["/bin/bash", "-c", "while true; do echo centos2 - for practice; sleep 5; done"]

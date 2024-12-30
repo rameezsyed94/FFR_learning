@@ -1,0 +1,10 @@
+#objectbased 
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+ name: syedquota
+ namespace: devns
+spec: 
+ hard:
+  pods: 3
+

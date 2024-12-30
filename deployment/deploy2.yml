@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: syeddeployment
+  labels:
+    class: devops
+  annotations:
+     kubernetes.io/change-cause: centos-3
+spec:
+   replicas: 20
+   selector:
+     matchLabels:
+       name: deployment
+   minReadySeconds: 10
+   strategy:
+      rollingUpdate:
+        maxSurge: 5       
+        maxUnavailable: 2
+      type: RollingUpdate
+
+   template:
+      metadata:
+       name: centospod
+       labels:
+         name: deployment
+      spec:
+       containers:
+        - name: centos
+          image: centos
+          command: ["/bin/bash", "-c", "while true; do echo centos3 - for practice; sleep 5; done"]

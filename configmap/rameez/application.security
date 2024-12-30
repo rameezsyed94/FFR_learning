@@ -1,0 +1,10 @@
+#securitydetails
+#
+#
+#
+#
+#
+WAF="cloudflare"
+DDOS="cloudflare"
+Firewall="Fortinet"
+

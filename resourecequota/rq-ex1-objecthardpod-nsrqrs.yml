@@ -1,0 +1,49 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: uat
+  labels:
+    team: devteam
+
+---
+
+apiVersion: v1
+kind: ResourceQuota
+
+metadata:
+  name: uatquota
+  namespace: uat
+spec:
+  hard:
+    pods: 5
+
+
+---
+
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: rs
+  namespace: uat
+  labels:
+    type: mylabel
+spec:
+  replicas: 5
+  selector:
+    matchExpressions:
+      - key: name
+        operator: In
+        values:
+          - devops
+          - devops2
+          - devops3
+  template:
+    metadata:
+      labels:
+        name: devops
+    spec:
+      containers:
+        - name: cont1
+          image: ubuntu
+          command: ["/bin/bash" ,"-c"," while true; do echo syed rameez; sleep 10; done"]
+

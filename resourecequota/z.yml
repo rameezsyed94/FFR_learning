@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: myfirstrs
+  namespace: qans
+  labels:
+    type: mylabel
+spec:
+  replicas: 6
+  selector:
+    matchExpressions:
+      - key: name
+        operator: In
+        values:
+          - devops
+          - devops2
+          - devops3
+  template:
+    metadata:
+      labels:
+        name: devops
+    spec:
+      containers:
+        - name: rscont
+          image: nginx
+

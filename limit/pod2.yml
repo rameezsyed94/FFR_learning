@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Namespace
+metadata: 
+  name: auprod
+  labels:
+     env: prod
+---
+
+apiVersion: v1
+kind: LimitRange
+
+metadata:
+  name: auprodlimitrange
+  namespace: auprod
+spec:
+  limits:
+    - default:
+       cpu: 50m
+       memory: 100Mi
+      type: Container
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: auprodpod
+  namespace: auprod
+  labels:
+    env: prod
+spec:
+  containers:
+    - name: auprodct
+      image: ubuntu
+      command: ["/bin/bash" , "-c" ,"while true; do echo ubuntu-auprodpod; sleep 5; done"]
+
+

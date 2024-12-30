@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: sitquota
+
+---
+#objectbased&computebased 
+apiVersion: v1
+kind: ResourceQuota 
+metadata:
+  name: sit
+  namespace: sitquota
+spec:
+  hard:
+   pods: 5
+   requests.cpu: 1
+   requests.memory: 1Gi
+   limits.cpu: 1
+   limits.memory: 1Gi
+
+
+

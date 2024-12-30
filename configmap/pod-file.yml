@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod1-cm3-fiile
+  labels:
+    course: devops
+spec:
+  containers:
+    - name: c5-fromfilecm
+      image: nginx
+      env:
+        - name: var5 #inside container env variable search
+          valueFrom:
+             configMapKeyRef:
+               name: cm2   # cm name
+               key: application.db # key we got from describing cm where we see data option below that we get this 

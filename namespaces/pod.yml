@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod3
+  namespace: dev
+  labels:
+    name: devops
+spec:
+  containers:
+    - name: cont2
+      image: nginx
+      resources:
+        requests:
+          memory: 500Mi
+          cpu: 0.2

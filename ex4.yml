@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: syed
+spec:
+  replicas: 02
+  minReadySeconds: 02
+  strategy:
+    rollingUpdate:
+      maxSurge: 2
+      maxUnavailable: 0
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      name: deployment
+  template:
+    metadata:
+      name: pod-syed
+      labels:
+        name: deployment
+    spec:
+      containers:
+        - name: syed
+          image: centos
+          command: ["/bin/bash", "-c", "while true; do echo centos 2-2  revision 4; sleep 5; done"]
+          resources:
+              requests:
+               memory: 4Gi
+               cpu: 1.0
+              limits:
+               memory: 200Mi
+               cpu: 200m #maximum 
